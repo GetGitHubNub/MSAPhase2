@@ -31,7 +31,7 @@ class App extends React.Component<{}, IState>{
 
   public addVideo = (url: string) => {
     const body = {"url": url}
-    fetch("https://scriberapi.azurewebsites.net/api/Videos", {
+    fetch("https://msaphase2api.azurewebsites.net/api/Videos", {
       body: JSON.stringify(body),
       headers: {
         Accept: "text/plain",
