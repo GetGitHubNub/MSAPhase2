@@ -25,7 +25,6 @@ export default class CaptionArea extends React.Component<IProps, IState>{
         }
     }
         
-
     public search = () => {
         if(this.state.input.trim() === ""){
             this.setState({result:[]},()=>this.makeTableBody())
