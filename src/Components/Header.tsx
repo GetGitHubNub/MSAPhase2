@@ -1,54 +1,52 @@
-import { IconButton } from '@material-ui/core';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField'
-import AddCircle from '@material-ui/icons/AddCircle'
+// import AddCircle from '@material-ui/icons/AddCircle'
+
 import * as React from 'react';
+import DateAppLogo from './DateAppLogo.png';
 
-interface IProps{
-    addVideo:any,
-}
-
+// current date
 interface IState{
-    input:string
+
+    dateInput: any,
+    datePickerIsOpen: any,
+    startDate: any,
 }
 
-export default class Header extends React.Component<IProps,IState> {
+export default class Header extends React.Component<{},IState> {
+    
+    public dateValue:Date= new Date();
+    
     public constructor(props:any){
         super(props);
         this.state = {
-            input:""
+
+            dateInput: "",
+            datePickerIsOpen:false,
+            startDate: new Date(),
         }
+        this.handleChange   = this.handleChange.bind(this);
+        this.openDatePicker = this.openDatePicker.bind(this);
     }
 
-    public addVideo = () =>{            
-        this.props.addVideo(this.state.input)
-    }
+    public handleChange(dateValue: Date) {
+        this.setState({
+          startDate: dateValue
+        });
+      }
+
+    public openDatePicker() {
+        this.setState({
+          datePickerIsOpen: !this.state.datePickerIsOpen,
+        });
+      };
 
     public render() {
+        // const { open } = this.state;
         return (
             <div className="header">
                 <div className="container">
                     <div className="row">
-                        <div className="col-2 justify-content-center align-self-center">
-                            <h1><span className="red-heading">Like</span>&amp;Scribr</h1>
-                        </div>
-                        <div className="col-10">
-                            <TextField
-                            id= "Search-Bar"
-                            className = "SearchBar"
-                            placeholder="Add Video Url"
-                            margin="normal"
-                            variant="outlined"
-                            onChange = { (event: any ) => this.setState({input:event.target.value})}
-                            value = {this.state.input}
-                            InputProps={{
-                                endAdornment: <InputAdornment position="end">
-                                    <IconButton onClick={this.addVideo}>
-                                        <AddCircle/>
-                                    </IconButton>
-                                </InputAdornment>,
-                            }}
-                            />
+                        <div className="col-3 justify-content-center align-self-center">
+                            <img src= { DateAppLogo } height='100'/>&nbsp; React App for MSA 2019 Phase 2 &nbsp;
                         </div>
                     </div>
                 </div>
